@@ -49,6 +49,7 @@
     <Compile Include="Lines\Grouped.cs" />
     <Compile Include="Lines\Interpolated.cs" />
     <Compile Include="Image\Line.cs" />
+    <Compile Include="Lines\LineCalculator.cs" />
     <Compile Include="Parameters\Config.cs" />
     <Compile Include="Parameters\Kind.cs" />
     <Compile Include="Program.cs" />

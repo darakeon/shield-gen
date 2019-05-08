@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SvgGen.Lines
 {
-	class Interpolated : Calculator
+	class Interpolated : LineCalculator
 	{
 		public Interpolated(UInt32 size) : base(size) { }
 

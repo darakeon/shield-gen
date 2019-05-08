@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SvgGen.Lines
 {
-	class Grouped : Calculator
+	class Grouped : LineCalculator
 	{
 		public Grouped(UInt32 size) : base(size) { }
 
