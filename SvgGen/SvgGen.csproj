@@ -46,6 +46,8 @@
     <Compile Include="Lines\Coordinate.cs" />
     <Compile Include="Lines\Drawer.cs" />
     <Compile Include="Lines\Calculator.cs" />
+    <Compile Include="Lines\Grouped.cs" />
+    <Compile Include="Lines\Interpolated.cs" />
     <Compile Include="Lines\Line.cs" />
     <Compile Include="Parameters\Config.cs" />
     <Compile Include="Parameters\Kind.cs" />

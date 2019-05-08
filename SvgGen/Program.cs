@@ -28,14 +28,14 @@ namespace SvgGen
 
 			var drawer = new Drawer();
 
-			var calc = new Calculator(config.Size);
+			var calc = Calculator.New(config.Size, config.Kind);
 
-			foreach (var line in calc.Lines)
+			foreach (var line in calc.GetLines())
 			{
 				drawer.AddLine(
 					line.Start.X, line.Start.Y,
 					line.End.X, line.End.Y,
-					"000000", config.Line
+					line.Color, config.Line
 				);
 			}
 				
