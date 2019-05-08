@@ -169,5 +169,10 @@ namespace SvgGen.Image
 				&& coordinate.Y >= minY
 				&& coordinate.Y <= maxY;
 		}
+
+		public override string ToString()
+		{
+			return $"{Start}>{End}";
+		}
 	}
 }

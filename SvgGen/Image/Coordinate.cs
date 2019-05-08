@@ -23,5 +23,10 @@ namespace SvgGen.Image
 				(Y + other.Y) / 2
 			);
 		}
+
+		public override string ToString()
+		{
+			return $"[{X},{Y}]";
+		}
 	}
 }
