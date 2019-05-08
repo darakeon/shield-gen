@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace SvgGen.Lines
+namespace SvgGen.Image
 {
 	class Drawer
 	{
-		private IList<String> lines = new List<String>();
+		private readonly IList<String> lines = new List<String>();
 
-		public Drawer AddLine(
-			UInt32 x1, UInt32 y1, UInt32 x2, UInt32 y2,
-			String color, UInt32 line
-		)
+		public Drawer AddLine(Line line, UInt32 weight)
 		{
 			lines.Add(
-				$"<line x1='{x1}' y1='{y1}' " +
-				$"x2='{x2}' y2='{y2}' " +
-				$"stroke='#{color}' " +
-				$"stroke-width='{line}' " +
+				$"<line x1='{line.Start.X}' " +
+				$"y1='{line.Start.Y}' " +
+				$"x2='{line.End.X}' " +
+				$"y2='{line.End.Y}' " +
+				$"stroke='#{line.Color}' " +
+				$"stroke-width='{weight}' " +
 				"stroke-linecap='round'/>"
 			);
 

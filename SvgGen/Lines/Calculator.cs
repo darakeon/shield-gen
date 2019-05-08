@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SvgGen.Image;
 using SvgGen.Parameters;
 
 namespace SvgGen.Lines

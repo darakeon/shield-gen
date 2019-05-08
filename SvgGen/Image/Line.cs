@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SvgGen.Lines
+namespace SvgGen.Image
 {
 	class Line
 	{

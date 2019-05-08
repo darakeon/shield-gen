@@ -1,4 +1,5 @@
 ﻿using System;
+using SvgGen.Image;
 using SvgGen.Lines;
 using SvgGen.Parameters;
 
@@ -32,11 +33,7 @@ namespace SvgGen
 
 			foreach (var line in calc.GetLines())
 			{
-				drawer.AddLine(
-					line.Start.X, line.Start.Y,
-					line.End.X, line.End.Y,
-					line.Color, config.Line
-				);
+				drawer.AddLine(line, config.Line);
 			}
 				
 			drawer.Generate("test.svg", config.Size, config.Size);
