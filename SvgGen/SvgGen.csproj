@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lines\Drawer.cs" />
     <Compile Include="Parameters\Config.cs" />
     <Compile Include="Parameters\Kind.cs" />
     <Compile Include="Program.cs" />
