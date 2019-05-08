@@ -29,16 +29,19 @@ namespace SvgGen
 
 			var drawer = new Drawer();
 
-			var calc = Calculator.New(config.Size, config.Kind);
+			var calculators = Calculator.New(config.Size, config.Kind);
 
-			foreach (var line in calc.GetLines())
+			foreach (var calc in calculators)
 			{
-				drawer.AddLine(line, config.Line);
-			}
+				foreach (var line in calc.GetLines())
+				{
+					drawer.AddLine(line, config.Line);
+				}
 
-			foreach (var shape in calc.GetShapes())
-			{
-				drawer.AddShape(shape);
+				foreach (var shape in calc.GetShapes())
+				{
+					drawer.AddShape(shape);
+				}
 			}
 
 			drawer.Generate("test.svg", config.Size, config.Size);

@@ -4,12 +4,13 @@ using System.Linq;
 
 namespace SvgGen.Parameters
 {
+	[Flags]
 	internal enum Kind
 	{
 		None = 0,
 		Grouped = 1,
 		Interpolated = 2,
-		Filled = 3,
+		Filled = 4,
 	}
 
 	class KindX
@@ -22,7 +23,6 @@ namespace SvgGen.Parameters
 			{
 				kind = kind,
 				name = name,
-				value = (Int32) kind,
 				letter = name.Substring(0, 1)
 			};
 		}
@@ -30,7 +30,6 @@ namespace SvgGen.Parameters
 		private Kind kind;
 		private String name;
 		private String letter;
-		private Int32 value;
 
 		private static readonly IList<KindX> all =
 			Enum.GetValues(typeof(Kind))
@@ -51,18 +50,6 @@ namespace SvgGen.Parameters
 		public static Kind? GetByName(String name)
 		{
 			return get(k => k.name == name);
-		}
-
-		public static Kind? GetByValue(String value)
-		{
-			return get(k => k.value.ToString() == value);
-		}
-
-		public static Kind? Get(String text)
-		{
-			return GetByName(text)
-				?? GetByLetter(text)
-				?? GetByValue(text);
 		}
 	}
 }

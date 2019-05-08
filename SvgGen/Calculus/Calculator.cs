@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SvgGen.Image;
 using SvgGen.Parameters;
 
@@ -7,19 +8,24 @@ namespace SvgGen.Calculus
 {
 	abstract class Calculator
 	{
-		public static Calculator New(UInt32 size, Kind kind)
+		public static IList<Calculator> New(UInt32 size, Kind kind)
 		{
-			switch (kind)
-			{
-				case Kind.Grouped:
-					return new Grouped(size);
-				case Kind.Interpolated:
-					return new Interpolated(size);
-				case Kind.Filled:
-					return new Filled(size);
-				default:
-					throw new SVGGException($"{{{kind}}} not implemented");
-			}
+			return @new(size, kind).ToList();
+		}
+
+		private static IEnumerable<Calculator> @new(UInt32 size, Kind kind)
+		{
+			if (kind == Kind.None)
+				throw new SVGGException("Choose some kind of shield!");
+
+			if (kind.HasFlag(Kind.Filled))
+				yield return new Filled(size);
+
+			if (kind.HasFlag(Kind.Grouped))
+				yield return new Grouped(size);
+
+			if (kind.HasFlag(Kind.Interpolated))
+				yield return new Interpolated(size);
 		}
 
 		protected Calculator(UInt32 size)

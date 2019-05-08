@@ -98,7 +98,20 @@ namespace SvgGen.Parameters
 			Line = getInteger(line);
 		}
 
-		private static UInt32 getInteger(string text)
+		public void SetKind(String kind)
+		{
+			Kind = KindX.GetByName(kind)
+			       ?? KindX.GetByLetter(kind)
+				   ?? getKind(kind)
+				   ?? throw valueException(kind);
+		}
+
+		private static Kind? getKind(String kind)
+		{
+			return (Kind?) getInteger(kind);
+		}
+
+		private static UInt32 getInteger(String text)
 		{
 			var parsed = UInt32.TryParse(text, out var integer);
 
@@ -106,12 +119,6 @@ namespace SvgGen.Parameters
 				throw valueException(text);
 
 			return integer;
-		}
-
-		public void SetKind(String kind)
-		{
-			Kind = KindX.Get(kind) 
-			    ?? throw valueException(kind);
 		}
 
 		private static Exception valueException(String text)
