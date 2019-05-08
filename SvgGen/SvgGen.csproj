@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculus\Filled.cs" />
     <Compile Include="Image\Coordinate.cs" />
     <Compile Include="Image\Drawer.cs" />
+    <Compile Include="Image\Shape.cs" />
     <Compile Include="Calculus\Calculator.cs" />
     <Compile Include="Calculus\Grouped.cs" />
     <Compile Include="Calculus\Interpolated.cs" />

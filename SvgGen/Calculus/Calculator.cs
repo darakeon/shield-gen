@@ -15,6 +15,8 @@ namespace SvgGen.Calculus
 					return new Grouped(size);
 				case Kind.Interpolated:
 					return new Interpolated(size);
+				case Kind.Filled:
+					return new Filled(size);
 				default:
 					throw new SVGGException($"{{{kind}}} not implemented");
 			}
@@ -47,5 +49,6 @@ namespace SvgGen.Calculus
 		protected readonly Coordinate[,] coordinates = new Coordinate[3,3];
 
 		public virtual IList<Line> GetLines() => new List<Line>();
+		public virtual IList<Shape> GetShapes() => new List<Shape>();
 	}
 }

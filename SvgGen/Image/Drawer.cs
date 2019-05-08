@@ -24,6 +24,23 @@ namespace SvgGen.Image
 			return this;
 		}
 
+		public Drawer AddShape(Shape shape)
+		{
+			var points = String.Join(
+				", ",
+				shape.Coordinates
+					.Select(c => $"{c.X} {c.Y}")
+			);
+
+			lines.Add(
+				$"<polygon points='{points}' " +
+				$"fill='#{shape.Color}' " +
+				$"stroke='#{shape.Color}' />"
+			);
+
+			return this;
+		}
+
 		public void Generate(String path, UInt32 width, UInt32 height)
 		{
 			var fix = "xmlns='http://www.w3.org/2000/svg' version='1.1'";

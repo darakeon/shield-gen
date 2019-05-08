@@ -35,7 +35,12 @@ namespace SvgGen
 			{
 				drawer.AddLine(line, config.Line);
 			}
-				
+
+			foreach (var shape in calc.GetShapes())
+			{
+				drawer.AddShape(shape);
+			}
+
 			drawer.Generate("test.svg", config.Size, config.Size);
 		}
 	}
