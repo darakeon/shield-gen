@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SvgGen.Image;
 
-namespace SvgGen.Lines
+namespace SvgGen.Calculus
 {
 	abstract class LineCalculator : Calculator
 	{

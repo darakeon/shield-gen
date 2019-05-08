@@ -45,11 +45,11 @@
   <ItemGroup>
     <Compile Include="Image\Coordinate.cs" />
     <Compile Include="Image\Drawer.cs" />
-    <Compile Include="Lines\Calculator.cs" />
-    <Compile Include="Lines\Grouped.cs" />
-    <Compile Include="Lines\Interpolated.cs" />
+    <Compile Include="Calculus\Calculator.cs" />
+    <Compile Include="Calculus\Grouped.cs" />
+    <Compile Include="Calculus\Interpolated.cs" />
     <Compile Include="Image\Line.cs" />
-    <Compile Include="Lines\LineCalculator.cs" />
+    <Compile Include="Calculus\LineCalculator.cs" />
     <Compile Include="Parameters\Config.cs" />
     <Compile Include="Parameters\Kind.cs" />
     <Compile Include="Program.cs" />

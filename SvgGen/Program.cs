@@ -1,6 +1,6 @@
 ﻿using System;
+using SvgGen.Calculus;
 using SvgGen.Image;
-using SvgGen.Lines;
 using SvgGen.Parameters;
 
 namespace SvgGen

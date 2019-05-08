@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SvgGen.Lines
+namespace SvgGen.Calculus
 {
 	class Interpolated : LineCalculator
 	{
