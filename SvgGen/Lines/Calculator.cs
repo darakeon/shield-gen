@@ -22,8 +22,8 @@ namespace SvgGen.Lines
 
 		protected Calculator(UInt32 size)
 		{
-			var width = (Double)size;
-			var height = size * Math.Sin(60 * Math.PI / 180);
+			var width = (Decimal)size;
+			var height = (Decimal)(size * Math.Sin(60 * Math.PI / 180));
 
 			coordinates[0, 0] = new Coordinate(width * 3 / 8, height / 4);
 			coordinates[0, 1] = new Coordinate(width / 4, height * 1 / 2);

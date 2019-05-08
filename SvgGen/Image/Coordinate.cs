@@ -13,7 +13,7 @@ namespace SvgGen.Image
 			Y = y;
 		}
 
-		public Coordinate(Double x, Double y)
+		public Coordinate(Decimal x, Decimal y)
 			: this((UInt32)x, (UInt32)y) { }
 
 		public Coordinate Average(Coordinate other)
