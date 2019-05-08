@@ -26,12 +26,20 @@ namespace SvgGen
 		{
 			var config = new Config(args);
 
-			var s = config.Size / 3;
-			var e = s * 2;
+			var drawer = new Drawer();
 
-			new Drawer()
-				.AddLine(s, s, e, e, "CC0000", config.Line)
-				.Generate("test.svg", config.Size, config.Size);
+			var calc = new Calculator(config.Size);
+
+			foreach (var line in calc.Lines)
+			{
+				drawer.AddLine(
+					line.Start.X, line.Start.Y,
+					line.End.X, line.End.Y,
+					"000000", config.Line
+				);
+			}
+				
+			drawer.Generate("test.svg", config.Size, config.Size);
 		}
 	}
 }

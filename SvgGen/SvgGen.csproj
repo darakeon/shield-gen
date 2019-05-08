@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lines\Coordinate.cs" />
     <Compile Include="Lines\Drawer.cs" />
+    <Compile Include="Lines\Calculator.cs" />
+    <Compile Include="Lines\Line.cs" />
     <Compile Include="Parameters\Config.cs" />
     <Compile Include="Parameters\Kind.cs" />
     <Compile Include="Program.cs" />
