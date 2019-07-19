@@ -45,7 +45,7 @@ namespace SvgGen.Parameters
 				new Dictionary<String, Action<String>>
 				{
 					{ "size", SetSize },
-					{ "letter", SetLine },
+					{ "line", SetLine },
 					{ "kind", SetKind },
 				};
 		}
