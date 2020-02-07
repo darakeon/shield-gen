@@ -9,12 +9,14 @@ namespace SvgGen.Parameters
 		public UInt32 Size { get; private set; }
 		public UInt32 Line { get; private set; }
 		public Kind Kind { get; private set; }
+		public Boolean Final { get; private set; }
 
 		private IDictionary<String, Action<String>> byLetter;
 		private IDictionary<String, Action<String>> byWord;
 
 		public Config(String[] args)
 		{
+			Final = true;
 			processArgs(args);
 		}
 
@@ -39,6 +41,7 @@ namespace SvgGen.Parameters
 					{ "s", SetSize },
 					{ "l", SetLine },
 					{ "k", SetKind },
+					{ "f", SetFinal },
 				};
 
 			byWord =
@@ -47,6 +50,7 @@ namespace SvgGen.Parameters
 					{ "size", SetSize },
 					{ "line", SetLine },
 					{ "kind", SetKind },
+					{ "final", SetFinal },
 				};
 		}
 
@@ -105,10 +109,28 @@ namespace SvgGen.Parameters
 				   ?? getKind(kind)
 				   ?? throw valueException(kind);
 		}
+		
+		public void SetKind(String kind)
+		{
+			Kind = KindX.GetByName(kind)
+			       ?? KindX.GetByLetter(kind)
+				   ?? getKind(kind)
+				   ?? throw valueException(kind);
+		}
 
 		private static Kind? getKind(String kind)
 		{
 			return (Kind?) getInteger(kind);
+		}
+
+		public void SetFinal(String final)
+		{
+			var isFinalByNumber = UInt32.TryParse(text, out var integer)
+				&& integer == 1;
+			var firstLetter = final.ToLower()[0]
+
+			Final = isFinalByNumber
+				|| firstLetter == 'y';
 		}
 
 		private static UInt32 getInteger(String text)
