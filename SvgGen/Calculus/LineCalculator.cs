@@ -8,7 +8,6 @@ namespace SvgGen.Calculus
 	{
 		protected LineCalculator(Boolean isFinal, UInt32 size) : base(isFinal, size) { }
 
-
 		public override IList<Line> GetLines()
 		{
 			var lines = new List<Line>();
