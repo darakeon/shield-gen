@@ -8,24 +8,24 @@ namespace SvgGen.Calculus
 {
 	abstract class Calculator
 	{
-		public static IList<Calculator> New(UInt32 size, Kind kind)
+		public static IList<Calculator> New(Boolean isFinal, UInt32 size, Kind kind)
 		{
 			if (kind == Kind.None)
 				throw new SVGGException("Choose some kind of shield!");
 
-			return @new(size, kind).ToList();
+			return @new(isFinal, size, kind).ToList();
 		}
 
-		private static IEnumerable<Calculator> @new(UInt32 size, Kind kind)
+		private static IEnumerable<Calculator> @new(Boolean isFinal, UInt32 size, Kind kind)
 		{
 			if (kind.HasFlag(Kind.Filled))
-				yield return new Filled(size);
+				yield return new Filled(isFinal, size);
 
 			if (kind.HasFlag(Kind.Grouped))
-				yield return new Grouped(size);
+				yield return new Grouped(isFinal, size);
 
 			if (kind.HasFlag(Kind.Interpolated))
-				yield return new Interpolated(size);
+				yield return new Interpolated(isFinal, size);
 		}
 
 		protected Calculator(Boolean isFinal, UInt32 size)
