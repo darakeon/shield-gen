@@ -6,7 +6,7 @@ namespace SvgGen.Calculus
 {
 	class Interpolated : LineCalculator
 	{
-		public Interpolated(UInt32 size) : base(size) { }
+		public Interpolated(Boolean isFinal, UInt32 size) : base(isFinal, size) { }
 
 		protected override IList<String> getColors(IList<String> mainColors)
 		{
