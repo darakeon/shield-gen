@@ -35,29 +35,34 @@ namespace SvgGen.Calculus
 			var width = (Decimal)size;
 			var height = (Decimal)(size * Math.Sin(60 * Math.PI / 180));
 
-			coordinates[0, 0, 0] = new Coordinate(width * 3 / 8, height * 1 / 4);
-			coordinates[0, 0, 1] = new Coordinate(width * 2 / 8, height * 2 / 4);
-			coordinates[0, 0, 2] = new Coordinate(width * 1 / 8, height * 3 / 4);
+			coordinates[0, 0, 0] = generate(3, 1);
+			coordinates[0, 0, 1] = generate(2, 2);
+			coordinates[0, 0, 2] = generate(1, 3);
 
-			coordinates[0, 1, 0] = new Coordinate(width * 2 / 8, height * 4 / 4);
-			coordinates[0, 1, 1] = new Coordinate(width * 4 / 8, height * 4 / 4);
-			coordinates[0, 1, 2] = new Coordinate(width * 6 / 8, height * 4 / 4);
+			coordinates[0, 1, 0] = generate(2, 4);
+			coordinates[0, 1, 1] = generate(4, 4);
+			coordinates[0, 1, 2] = generate(6, 4);
 
-			coordinates[0, 2, 0] = new Coordinate(width * 7 / 8, height * 3 / 4);
-			coordinates[0, 2, 1] = new Coordinate(width * 6 / 8, height * 2 / 4);
-			coordinates[0, 2, 2] = new Coordinate(width * 5 / 8, height * 1 / 4);
+			coordinates[0, 2, 0] = generate(7, 3);
+			coordinates[0, 2, 1] = generate(6, 2);
+			coordinates[0, 2, 2] = generate(5, 1);
 
-			coordinates[1, 0, 0] = new Coordinate(width * 4 / 8, height * 0 / 4);
-			coordinates[1, 0, 1] = new Coordinate(width * 2 / 8, height * 2 / 4);
-			coordinates[1, 0, 2] = new Coordinate(width * 0 / 8, height * 4 / 4);
+			coordinates[1, 0, 0] = generate(4, 0);
+			coordinates[1, 0, 1] = generate(2, 2);
+			coordinates[1, 0, 2] = generate(0, 4);
 
-			coordinates[0, 1, 0] = new Coordinate(width * 0 / 8, height * 4 / 4);
-			coordinates[0, 1, 1] = new Coordinate(width * 4 / 8, height * 4 / 4);
-			coordinates[0, 1, 2] = new Coordinate(width * 8 / 8, height * 4 / 4);
+			coordinates[0, 1, 0] = generate(0, 4);
+			coordinates[0, 1, 1] = generate(4, 4);
+			coordinates[0, 1, 2] = generate(8, 4);
 
-			coordinates[0, 2, 0] = new Coordinate(width * 8 / 8, height * 4 / 4);
-			coordinates[0, 2, 1] = new Coordinate(width * 6 / 8, height * 2 / 4);
-			coordinates[0, 2, 2] = new Coordinate(width * 4 / 8, height * 0 / 4);
+			coordinates[0, 2, 0] = generate(8, 4);
+			coordinates[0, 2, 1] = generate(6, 2);
+			coordinates[0, 2, 2] = generate(4, 0);
+		}
+		
+		private Coordinate generate(Decimal width, Decimal height, Int32 gridX, Int32 gridY)
+		{
+			return new Coordinate(width * gridX / 8, height * gridY / 4);
 		}
 
 		protected const Int32 sides = 3;
