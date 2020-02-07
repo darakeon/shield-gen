@@ -65,13 +65,14 @@ namespace SvgGen.Calculus
 			return new Coordinate(width * gridX / 8, height * gridY / 4);
 		}
 
+		protected const Int32 states = 2;
 		protected const Int32 sides = 3;
 		protected const Int32 dots = 3;
 		protected readonly UInt32 size;
 		protected readonly Decimal width;
 		protected readonly Decimal height;
 
-		protected readonly Coordinate[,,] coordinates = new Coordinate[2,sides,dots];
+		protected readonly Coordinate[,,] coordinates = new Coordinate[states,sides,dots];
 
 		public virtual IList<Line> GetLines() => new List<Line>();
 		public virtual IList<Shape> GetShapes() => new List<Shape>();
