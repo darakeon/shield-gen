@@ -6,7 +6,7 @@ namespace SvgGen.Calculus
 {
 	class Grouped : LineCalculator
 	{
-		public Grouped(UInt32 size) : base(size) { }
+		public Grouped(Boolean isFinal, UInt32 size) : base(isFinal, size) { }
 
 		protected override IList<String> getColors(IList<String> mainColors)
 		{
