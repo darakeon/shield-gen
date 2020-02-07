@@ -31,67 +31,70 @@ namespace SvgGen.Calculus
 
 		private void oneColor(IList<Shape> shapes, String color, Int32 index)
 		{
-			var c = index; // current
-			var n = (index + 1) % 3; // next
-			var p = (index + 2) % 3; // previous
+			colors(index, (c, n, p) => {
+				var right = new Shape(color);
+				right.Add(coordinates[c, 0]);
+				right.Add(getCross(c, 0, n, 2, c, 1, p, 2));
+				right.Add(getCross(c, 0, n, 0, c, 1, p, 2));
+				shapes.Add(right);
 
-			var right = new Shape(color);
-			right.Add(coordinates[c, 0]);
-			right.Add(getCross(c, 0, n, 2, c, 1, p, 2));
-			right.Add(getCross(c, 0, n, 0, c, 1, p, 2));
-			shapes.Add(right);
+				var left = new Shape(color);
+				left.Add(coordinates[c, 2]);
+				left.Add(getCross(c, 2, p, 0, c, 1, n, 0));
+				left.Add(getCross(c, 2, p, 2, c, 1, n, 0));
+				shapes.Add(left);
 
-			var center = new Shape(color);
-			center.Add(coordinates[c, 2]);
-			center.Add(getCross(c, 2, p, 0, c, 1, n, 0));
-			center.Add(getCross(c, 2, p, 2, c, 1, n, 0));
-			shapes.Add(center);
-
-			var left = new Shape(color);
-			left.Add(coordinates[c, 1]);
-			left.Add(getCross(c, 1, n, 0, c, 2, p, 2));
-			left.Add(getCross(c, 2, p, 2, c, 1, n, 1));
-			left.Add(getCross(c, 1, n, 1, c, 2, p, 1));
-			left.Add(getCross(c, 2, p, 1, c, 0, n, 1));
-			left.Add(getCross(c, 0, n, 1, c, 1, p, 1));
-			left.Add(getCross(c, 1, p, 1, c, 0, n, 0));
-			left.Add(getCross(c, 0, n, 0, c, 1, p, 2));
-			shapes.Add(left);
+				var center = new Shape(color);
+				center.Add(coordinates[c, 1]);
+				center.Add(getCross(c, 1, n, 0, c, 2, p, 2));
+				center.Add(getCross(c, 2, p, 2, c, 1, n, 1));
+				center.Add(getCross(c, 1, n, 1, c, 2, p, 1));
+				center.Add(getCross(c, 2, p, 1, c, 0, n, 1));
+				center.Add(getCross(c, 0, n, 1, c, 1, p, 1));
+				center.Add(getCross(c, 1, p, 1, c, 0, n, 0));
+				center.Add(getCross(c, 0, n, 0, c, 1, p, 2));
+				shapes.Add(center);
+			});
 		}
 
 		private void twoColors(IList<Shape> shapes, String color, Int32 index)
 		{
-			var c = index; // current
-			var n = (index + 1) % 3; // next
-			var p = (index + 2) % 3; // previous
+			colors(index, (c, n, p) => {
+				var shape = new Shape(color);
 
-			var shape = new Shape(color);
+				shape.Add(getCross(c, 1, n, 2, n, 1, c, 0));
+				shape.Add(getCross(n, 1, c, 0, c, 2, p, 1));
+				shape.Add(getCross(c, 2, p, 1, c, 1, n, 1));
+				shape.Add(getCross(c, 1, n, 1, c, 2, p, 2));
+				shape.Add(getCross(c, 2, p, 2, c, 1, n, 0));
+				shape.Add(getCross(c, 1, n, 0, c, 2, p, 0));
+				shape.Add(getCross(c, 2, p, 0, c, 2, n, 0));
+				shape.Add(getCross(c, 2, n, 0, n, 0, p, 2));
+				shape.Add(getCross(n, 0, p, 2, c, 2, n, 1));
+				shape.Add(getCross(c, 2, n, 1, n, 0, p, 0));
+				shape.Add(getCross(n, 0, p, 0, n, 1, c, 1));
+				shape.Add(getCross(n, 1, c, 1, n, 0, p, 1));
+				shape.Add(getCross(n, 0, p, 1, c, 1, n, 2));
 
-			shape.Add(getCross(c, 1, n, 2, n, 1, c, 0));
-			shape.Add(getCross(n, 1, c, 0, c, 2, p, 1));
-			shape.Add(getCross(c, 2, p, 1, c, 1, n, 1));
-			shape.Add(getCross(c, 1, n, 1, c, 2, p, 2));
-			shape.Add(getCross(c, 2, p, 2, c, 1, n, 0));
-			shape.Add(getCross(c, 1, n, 0, c, 2, p, 0));
-			shape.Add(getCross(c, 2, p, 0, c, 2, n, 0));
-			shape.Add(getCross(c, 2, n, 0, n, 0, p, 2));
-			shape.Add(getCross(n, 0, p, 2, c, 2, n, 1));
-			shape.Add(getCross(c, 2, n, 1, n, 0, p, 0));
-			shape.Add(getCross(n, 0, p, 0, n, 1, c, 1));
-			shape.Add(getCross(n, 1, c, 1, n, 0, p, 1));
-			shape.Add(getCross(n, 0, p, 1, c, 1, n, 2));
-
-			shapes.Add(shape);
+				shapes.Add(shape);
+			});
 		}
 
 		private void threeColors(Shape shape, Int32 index)
 		{
+			colors(index, (c, n, p) => {
+				shape.Add(getCross(c, 1, p, 0, p, 1, c, 2));
+				shape.Add(getCross(p, 1, c, 2, c, 0, n, 1));
+			});
+		}
+		
+		private void colors(Int32 index, Action<Int32, Int32, Int32> add)
+		{
 			var c = index; // current
 			var n = (index + 1) % 3; // next
 			var p = (index + 2) % 3; // previous
-
-			shape.Add(getCross(c, 1, p, 0, p, 1, c, 2));
-			shape.Add(getCross(p, 1, c, 2, c, 0, n, 1));
+			
+			add(c, n, p);
 		}
 
 		private Coordinate getCross(
