@@ -10,14 +10,14 @@ namespace SvgGen.Calculus
 	{
 		public static IList<Calculator> New(UInt32 size, Kind kind)
 		{
+			if (kind == Kind.None)
+				throw new SVGGException("Choose some kind of shield!");
+
 			return @new(size, kind).ToList();
 		}
 
 		private static IEnumerable<Calculator> @new(UInt32 size, Kind kind)
 		{
-			if (kind == Kind.None)
-				throw new SVGGException("Choose some kind of shield!");
-
 			if (kind.HasFlag(Kind.Filled))
 				yield return new Filled(size);
 
@@ -32,8 +32,8 @@ namespace SvgGen.Calculus
 		{
 			this.size = size;
 
-			var width = (Decimal)size;
-			var height = (Decimal)(size * Math.Sin(60 * Math.PI / 180));
+			width = size;
+			height = size * Math.Sin(60 * Math.PI / 180);
 
 			coordinates[0, 0, 0] = generate(3, 1);
 			coordinates[0, 0, 1] = generate(2, 2);
@@ -60,7 +60,7 @@ namespace SvgGen.Calculus
 			coordinates[0, 2, 2] = generate(4, 0);
 		}
 		
-		private Coordinate generate(Decimal width, Decimal height, Int32 gridX, Int32 gridY)
+		private Coordinate generate(Int32 gridX, Int32 gridY)
 		{
 			return new Coordinate(width * gridX / 8, height * gridY / 4);
 		}
@@ -68,6 +68,8 @@ namespace SvgGen.Calculus
 		protected const Int32 sides = 3;
 		protected const Int32 dots = 3;
 		protected readonly UInt32 size;
+		protected readonly Decimal width;
+		protected readonly Decimal height;
 
 		protected readonly Coordinate[,,] coordinates = new Coordinate[2,sides,dots];
 
