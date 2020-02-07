@@ -28,36 +28,41 @@ namespace SvgGen.Calculus
 				yield return new Interpolated(size);
 		}
 
-		protected Calculator(UInt32 size)
+		protected Calculator(Boolean isFinal, UInt32 size)
 		{
 			this.size = size;
 
 			width = size;
 			height = size * Math.Sin(60 * Math.PI / 180);
 
-			coordinates[0, 0, 0] = generate(3, 1);
-			coordinates[0, 0, 1] = generate(2, 2);
-			coordinates[0, 0, 2] = generate(1, 3);
+			if (isFinal)
+			{
+				coordinates[0, 0] = generate(3, 1);
+				coordinates[0, 1] = generate(2, 2);
+				coordinates[0, 2] = generate(1, 3);
 
-			coordinates[0, 1, 0] = generate(2, 4);
-			coordinates[0, 1, 1] = generate(4, 4);
-			coordinates[0, 1, 2] = generate(6, 4);
+				coordinates[1, 0] = generate(2, 4);
+				coordinates[1, 1] = generate(4, 4);
+				coordinates[1, 2] = generate(6, 4);
 
-			coordinates[0, 2, 0] = generate(7, 3);
-			coordinates[0, 2, 1] = generate(6, 2);
-			coordinates[0, 2, 2] = generate(5, 1);
+				coordinates[2, 0] = generate(7, 3);
+				coordinates[2, 1] = generate(6, 2);
+				coordinates[2, 2] = generate(5, 1);
+			}
+			else
+			{
+				coordinates[0, 0] = generate(4, 0);
+				coordinates[0, 1] = generate(2, 2);
+				coordinates[0, 2] = generate(0, 4);
 
-			coordinates[1, 0, 0] = generate(4, 0);
-			coordinates[1, 0, 1] = generate(2, 2);
-			coordinates[1, 0, 2] = generate(0, 4);
+				coordinates[1, 0] = generate(0, 4);
+				coordinates[1, 1] = generate(4, 4);
+				coordinates[1, 2] = generate(8, 4);
 
-			coordinates[0, 1, 0] = generate(0, 4);
-			coordinates[0, 1, 1] = generate(4, 4);
-			coordinates[0, 1, 2] = generate(8, 4);
-
-			coordinates[0, 2, 0] = generate(8, 4);
-			coordinates[0, 2, 1] = generate(6, 2);
-			coordinates[0, 2, 2] = generate(4, 0);
+				coordinates[2, 0] = generate(8, 4);
+				coordinates[2, 1] = generate(6, 2);
+				coordinates[2, 2] = generate(4, 0);
+			}
 		}
 		
 		private Coordinate generate(Int32 gridX, Int32 gridY)
@@ -65,14 +70,13 @@ namespace SvgGen.Calculus
 			return new Coordinate(width * gridX / 8, height * gridY / 4);
 		}
 
-		protected const Int32 states = 2;
 		protected const Int32 sides = 3;
 		protected const Int32 dots = 3;
 		protected readonly UInt32 size;
 		protected readonly Decimal width;
 		protected readonly Decimal height;
 
-		protected readonly Coordinate[,,] coordinates = new Coordinate[states,sides,dots];
+		protected readonly Coordinate[,] coordinates = new Coordinate[sides,dots];
 
 		public virtual IList<Line> GetLines() => new List<Line>();
 		public virtual IList<Shape> GetShapes() => new List<Shape>();
