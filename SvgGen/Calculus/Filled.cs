@@ -6,7 +6,7 @@ namespace SvgGen.Calculus
 {
 	internal class Filled : Calculator
 	{
-		public Filled(UInt32 size) : base(size) { }
+		public Filled(Boolean isFinal, UInt32 size) : base(isFinal, size) { }
 
 		public override IList<Shape> GetShapes()
 		{
