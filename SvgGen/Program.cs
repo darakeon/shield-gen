@@ -29,7 +29,7 @@ namespace SvgGen
 
 			var drawer = new Drawer();
 
-			var calculators = Calculator.New(config.Size, config.Kind);
+			var calculators = Calculator.New(config.Final, config.Size, config.Kind);
 
 			foreach (var calc in calculators)
 			{
@@ -44,7 +44,7 @@ namespace SvgGen
 				}
 			}
 
-			drawer.Generate("test.svg", config.Size, config.Size);
+			drawer.Generate($"27_{config.Final}_{config.Size}_{config.Kind}.svg", config.Size, config.Size);
 		}
 	}
 }
