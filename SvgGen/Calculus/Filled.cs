@@ -94,11 +94,19 @@ namespace SvgGen.Calculus
 			shape.Add(getCross(p, 1, c, 2, c, 0, n, 1));
 		}
 
-		private Coordinate getCross(Int32 x1, Int32 y1, Int32 x2, Int32 y2, Int32 x3, Int32 y3, Int32 x4, Int32 y4)
+		private Coordinate getCross(
+			Int32 side1start, Int32 dot1start, Int32 side1end, Int32 dot1end,
+			Int32 side2start, Int32 dot2start, Int32 side2end, Int32 dot2end
+		)
 		{
-			var line1 = new Line(coordinates[x1, y1], coordinates[x2, y2]);
-			var line2 = new Line(coordinates[x3, y3], coordinates[x4, y4]);
+			var line1 = getLine(side1start, dot1start, side1end, dot1end);
+			var line2 = getLine(side2start, dot2start, side2end, dot2end);
 			return line1.Cross(line2);
+		}
+
+		private Coordinate getLine(Int32 sideStart, Int32 dotStart, Int32 sideEnd, Int32 dotEnd)
+		{
+			return new Line(coordinates[side1start, dot1start], coordinates[side1end, dot1end]);
 		}
 	}
 }
